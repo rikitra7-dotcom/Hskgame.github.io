@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>HSK 151-225 + Arti</title>
+<style>
+body{font-family:Arial;max-width:700px;margin:auto;padding:20px}
+.hanzi{font-size:72px;text-align:center;margin:20px}
+input,button{padding:10px;font-size:16px}
+#hasil{margin-top:12px;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>Game Tebak Pinyin HSK 151–225</h1>
+
+<div class="hanzi" id="hanzi"></div>
+<input id="jawab" placeholder="Masukkan pinyin">
+<button onclick="cek()">Cek</button>
+<button onclick="soalBaru()">Soal Baru</button>
+
+<p id="hasil"></p>
+<p>Skor: <span id="skor">0</span></p>
+
+<script>
+const data=[
+["牛奶","niunai","susu"],
+["女","nv","perempuan"],
+["女儿","nver","anak perempuan"],
+["女朋友","nvpengyou","pacar perempuan"],
+["女士","nvshi","wanita"],
+["朋友","pengyou","teman"],
+["便宜","pianyi","murah"],
+["漂亮","piaoliang","cantik"],
+["苹果","pingguo","apel"],
+["起床","qichuang","bangun tidur"],
+["前","qian","depan"],
+["钱","qian","uang"],
+["请问","qingwen","permisi / bertanya"],
+["去年","qunian","tahun lalu"],
+["热","re","panas"],
+["认识","renshi","kenal"],
+["商店","shangdian","toko"],
+["上班","shangban","bekerja"],
+["上课","shangke","masuk kelas"],
+["上午","shangwu","pagi"],
+["上学","shangxue","bersekolah"],
+["谁","shei","siapa"],
+["什么","shenme","apa"],
+["生病","shengbing","sakit"],
+["时间","shijian","waktu"],
+["手机","shouji","HP"],
+["书店","shudian","toko buku"],
+["水果","shuiguo","buah-buahan"],
+["睡觉","shuijiao","tidur"],
+["说话","shuohua","berbicara"],
+["天气","tianqi","cuaca"],
+["同学","tongxue","teman sekolah"],
+["外边","waibian","di luar"],
+["晚饭","wanfan","makan malam"],
+["晚上","wanshang","malam hari"],
+["问题","wenti","pertanyaan"],
+["我们","women","kami / kita"],
+["午饭","wufan","makan siang"],
+["喜欢","xihuan","suka"]
+];
+
+let current;
+let score=0;
+
+function soalBaru(){
+ current=data[Math.floor(Math.random()*data.length)];
+ document.getElementById("hanzi").innerText=current[0];
+ document.getElementById("jawab").value="";
+ document.getElementById("hasil").innerText="";
+}
+
+function cek(){
+ const j=document.getElementById("jawab").value.toLowerCase().replace(/\s/g,'');
+ if(j===current[1]){
+   score++;
+   document.getElementById("skor").innerText=score;
+   document.getElementById("hasil").innerHTML =
+   "✅ Benar<br>Pinyin: "+current[1]+"<br>Arti: "+current[2];
+ }else{
+   document.getElementById("hasil").innerHTML =
+   "❌ Salah<br>Pinyin yang benar: "+current[1]+"<br>Arti: "+current[2];
+ }
+}
+
+soalBaru();
+</script>
+</body>
+</html>
